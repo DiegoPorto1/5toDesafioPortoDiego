@@ -62,7 +62,8 @@ app.get('/static', (req, res) => {
     res.render('home', {
         css: "style.css",
         title: "Productos",
-        js: "home"
+        js2: "home.js",
+        
 
     })
 })
@@ -91,7 +92,7 @@ io.on('connection', (socket) => {
     })
     socket.on('mostrarProductos', async () => {
         const products = await  productModel.find()
-         socket.emit('products', products);
+         socket.emit('productos', products);
       });
 
       socket.on('mostrarChat', async()=>{

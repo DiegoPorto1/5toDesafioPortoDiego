@@ -4,6 +4,7 @@ import { userModel } from "../models/user.models.js";
 const userRouter = Router()
 
 userRouter.get('/', async (req, res) => {
+    const { limit } = req.query
     try {
         const users = await userModel.find()
         res.status(200).send({ respuesta: 'OK', mensaje: users })

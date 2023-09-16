@@ -25,7 +25,6 @@ botonChat.addEventListener('click', () => {
     if (valInput.value.trim().length > 0) {
         socket.emit('nuevoMensaje', { email: userEmail, message: valInput.value })
         valInput.value = "";
-        socket.on();
     }
 })
 

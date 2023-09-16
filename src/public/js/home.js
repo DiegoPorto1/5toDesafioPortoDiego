@@ -1,11 +1,13 @@
 
-const socket = io.connect('http://localhost:4000')
-const botonProds = document.getElementById('botonProductos')
+const socket = io.connect('http://localhost:4000');
+console.log('conectado');
+const botonProds = document.getElementById('btnProductos')
 
 
 
 botonProds.addEventListener('click', () => {
-    socket.emit('mostrarProductos')
+    console.log("se emite?")
+    socket.emit('mostrarProductos') 
 })
 
 socket.on('productos', (products)=>{
@@ -14,6 +16,7 @@ socket.on('productos', (products)=>{
     if (products && Array.isArray(products)){
         products.forEach( product => {
             tabletContent +=
+            `
             <tr>
             <td>${product._id}</td>
             <td>${product.title}</td>
@@ -23,11 +26,11 @@ socket.on('productos', (products)=>{
             <td>${product.category}</td>
             <td>${product.code}</td>
             <td>${product.thumbnails}</td>
-        </tr>
+        </tr>`
         })
     } else {
         console.error ('Productos no encontrados o no es un array:', products)
     }
 
-    tableBody.innerHTML = tabletContent
-})
+    tableBody.innerHTML = tabletContent;
+});

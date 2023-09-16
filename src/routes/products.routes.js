@@ -4,10 +4,36 @@ import { productModel } from "../models/products.models.js";
 const productRouter = Router()
 
 productRouter.get('/', async (req, res) => {
-    const { limit } = req.query
+    const { limit, page, category, sort } = req.query
 
     try {
+        let query = {}
+        let link
+        if (caategory){
+            query.category =category
+            link = `&category=${query.category}`
+        }
+        let  options = {
+            limit:parseInt(limit) || 10,
+            page: parseInt(page)||1,
+            sort: (
+                price_sort|| 1
+            )
+        }
         const prods = await productModel.find().limit(limit)
+        
+        const respuesta = {
+            status: "success",
+            payload: prods.docs,
+            totalPages: prods.totalPages,
+            prevPage: prods.prevPage,
+            nextPage: prods.nextPage,
+            page: prods.page,
+            hasPrevPage: prods.hasPrevPage,
+            hasNextPage: prods.hasNextPage,
+            prevLink: prods.hasPrevPage ? `http://${req.headers.host}${req.baseUrl}?limit=${options.limit}&page=${prods.prevPage}${link || ''}&sort=${options.sort.price}` : null,
+            nextLink: prods.hasNextPage ? `http://${req.headers.host}${req.baseUrl}?limit=${options.limit}&page=${prods.nextPage}${link || ''}&sort=${options.sort.price}` : null
+        }
         res.status(200).send({ respuesta: 'OK', mensaje: prods })
     } catch (error) {
         res.status(400).send({ respuesta: 'Error en consultar productos', mensaje: error })
