@@ -14,23 +14,35 @@ Swal.fire({
     },
     allowOutsideClick: false
 }).then(resultado => {
-    user = resultado.value
+    userEmail = resultado.value
+    socket.emit("mostratChats")
     console.log(user)
 })
 
 botonChat.addEventListener('click', () => {
-    let fechaActual = new Date().toLocaleString()
+    
 
     if (valInput.value.trim().length > 0) {
-        socket.emit('mensaje', { fecha: fechaActual, user: user, mensaje: valInput.value })
-        valInput.value = ""
-        socket.on()
+        socket.emit('nuevoMensaje', { email: userEmail, message: valInput.value })
+        valInput.value = "";
+        socket.on();
     }
 })
 
 socket.on('mensajes', (arrayMensajes) => {
-    parrafosMensajes.innerHTML = ""
-    arrayMensajes.forEach(mensaje => {
-        parrafosMensajes.innerHTML += `<p>${mensaje.fecha}: el usuario ${mensaje.user} escribio ${mensaje.mensaje} </p>`
-    })
-})
+    parrafosMensajes.innerHTML = "";
+
+    
+        arrayMensajes.forEach((element) => {
+            parrafosMensajes.innerHTML += `
+                <li class="liParrafosMensajes">
+                 <div class="spanContainer">
+                    <p>${element.postTime}</p>
+                    <p>${element.email}:</p>
+                 </div>
+                <p class="userMessage">${element.message}
+                </p>
+                </li>
+            `;
+    });
+});

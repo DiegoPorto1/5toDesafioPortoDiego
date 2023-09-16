@@ -7,9 +7,20 @@ import { __dirname } from './path.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import path from 'path'
+import { productModel } from './models/products.models.js'
+import { messageModel } from './models/messages.models.js'
 
 const app = express()
 const PORT = 4000
+
+const serverExpress = app.listen(PORT, () => {
+    console.log(`Server on port ${PORT}`)
+})
+
+
+mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net/?retryWrites=true&w=majority')
+    .then(() => console.log('BDD conectada'))
+    .catch(() => console.log('Error en conexion a BDD'))
 
 
 app.use(express.json())
@@ -19,11 +30,17 @@ app.engine('handlebars', engine()) //Defino que motor de plantillas voy a utiliz
 app.set('view engine', 'handlebars') //Setting de mi app de hbs
 app.set('views', path.resolve(__dirname, './views')) //Resolver rutas absolutas a traves de rutas relativas
 app.use('/static', express.static(path.join(__dirname, '/public'))) //Unir rutas en una sola concatenandolas
+app.use('/chat', express.static(path.join(__dirname, '/public')))
+app.use('/realTimeProducts',express.static(path.join(__dirname, '/public')))
+
 
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
-app.get('/static', (req, res) => {
+
+
+
+app.get('/realTimeProducts', (req, res) => {
     res.render('realTimeProducts', {
         css: "style.css",
         title: "products",
@@ -32,52 +49,60 @@ app.get('/static', (req, res) => {
 
     })
 })
-app.get('/static/chat', (req, res) => {
+app.get('/chat', (req, res) => {
     res.render('chat', {
         css: "style.css",
         title: "Chat",
-        js: "realTimeProducts.js",
-        js2: "script.js"
+        js: "script.js",
+        
+
+    })
+})
+app.get('/static', (req, res) => {
+    res.render('home', {
+        css: "style.css",
+        title: "Productos",
+        js: "home"
 
     })
 })
 
-const serverExpress = app.listen(PORT, () => {
-    console.log(`Server on port ${PORT}`)
-})
 
 
 const io = new Server(serverExpress)
-const mensajes = []
-const prods = []
+
+
 io.on('connection', (socket) => {
     console.log("Servidor Socket.io conectado")
-    socket.on('mensajeConexion', (user) => {
-        if (user.rol === "Admin") {
-            socket.emit('credencialesConexion', "Usuario valido")
-        } else {
-            socket.emit('credencialesConexion', "Usuario no valido")
-        }
+   
+
+
+    socket.on('nuevoMensaje', async ({email, message}) => {
+        console.log(message)
+        await messageModel.create({email:email, message: message})
+        const messages = await messageModel.find()
+        socket.emit('mensajes', messages)
     })
 
-    socket.on('mensaje', (infoMensaje) => {
-        console.log(infoMensaje)
-        mensajes.push(infoMensaje)
-        socket.emit('mensajes', mensajes)
-    })
 
-    socket.on('nuevoProducto', (nuevoProd) => {
-        prods.push(nuevoProd)
-        socket.emit('prods', prods)
+    socket.on('nuevoProducto',  async (nuevoProd) => {
+        const {title, description, price, stock,category,code, thumbnails}= nuevoProd
+        await productModel.create({title,description,price,stock,category,code,thumbnails})
     })
+    socket.on('mostrarProductos', async () => {
+        const products = await  productModel.find()
+         socket.emit('products', products);
+      });
 
+      socket.on('mostrarChat', async()=>{
+         const messages = await messageModel.find()
+         socket.emit("mostrarMensajes", messages)
+      })
 
 
 })
 
-mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net/?retryWrites=true&w=majority')
-    .then(() => console.log('BDD conectada'))
-    .catch(() => console.log('Error en conexion a BDD'))
+
 
 
 
