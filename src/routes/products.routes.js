@@ -9,7 +9,7 @@ productRouter.get('/', async (req, res) => {
     try {
         let query = {}
         let link
-        if (caategory){
+        if (category){
             query.category =category
             link = `&category=${query.category}`
         }
@@ -17,7 +17,7 @@ productRouter.get('/', async (req, res) => {
             limit:parseInt(limit) || 10,
             page: parseInt(page)||1,
             sort: (
-                price_sort|| 1
+                sort|| 1
             )
         }
         const prods = await productModel.find().limit(limit)
@@ -34,7 +34,7 @@ productRouter.get('/', async (req, res) => {
             prevLink: prods.hasPrevPage ? `http://${req.headers.host}${req.baseUrl}?limit=${options.limit}&page=${prods.prevPage}${link || ''}&sort=${options.sort.price}` : null,
             nextLink: prods.hasNextPage ? `http://${req.headers.host}${req.baseUrl}?limit=${options.limit}&page=${prods.nextPage}${link || ''}&sort=${options.sort.price}` : null
         }
-        res.status(200).send({ respuesta: 'OK', mensaje: prods })
+        res.status(200).send( respuesta);
     } catch (error) {
         res.status(400).send({ respuesta: 'Error en consultar productos', mensaje: error })
     }

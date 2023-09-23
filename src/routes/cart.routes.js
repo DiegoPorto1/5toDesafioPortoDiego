@@ -38,7 +38,7 @@ cartRouter.post('/:cid/products/:pid', async (req, res) => {
             const prod = await productModel.findById(pid) 
 
             if (prod) {
-                const indice = cart.products.products.findIndex(item => item.id_prod == pid) 
+                const indice = cart.products.products.findIndex(item => item.id_prod_id.toString() == pid) 
                 if (indice != -1) {
                     cart.products.products[indice].quantity = quantity 
                 } else {
