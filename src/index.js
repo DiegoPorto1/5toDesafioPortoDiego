@@ -7,6 +7,9 @@ import { __dirname } from './path.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import path from 'path'
+import cookieParser from 'cookie-parser'
+import session from 'express-session'
+import sessionRouter from './routes/session.routes.js'
 import { productModel } from './models/products.models.js'
 import { messageModel } from './models/messages.models.js'
 
@@ -37,6 +40,7 @@ app.use('/realTimeProducts',express.static(path.join(__dirname, '/public')))
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
+app.use('/api/sessions', sessionRouter)
 
 
 
