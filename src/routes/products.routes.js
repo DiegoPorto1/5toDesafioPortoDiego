@@ -20,8 +20,9 @@ productRouter.get('/', async (req, res) => {
                 sort|| 1
             )
         }
-        const prods = await productModel.find().limit(limit)
-        
+        const prods = await productModel.paginate({category:'1'})
+        console.log(prods)
+
         const respuesta = {
             status: "success",
             payload: prods.docs,
@@ -31,8 +32,8 @@ productRouter.get('/', async (req, res) => {
             page: prods.page,
             hasPrevPage: prods.hasPrevPage,
             hasNextPage: prods.hasNextPage,
-            prevLink: prods.hasPrevPage ? `http://${req.headers.host}${req.baseUrl}?limit=${options.limit}&page=${prods.prevPage}${link || ''}&sort=${options.sort.price}` : null,
-            nextLink: prods.hasNextPage ? `http://${req.headers.host}${req.baseUrl}?limit=${options.limit}&page=${prods.nextPage}${link || ''}&sort=${options.sort.price}` : null
+            prevLink: prods.hasPrevPage ? null : null,
+            nextLink: prods.hasNextPage ? null : null,
         }
         res.status(200).send( respuesta);
     } catch (error) {

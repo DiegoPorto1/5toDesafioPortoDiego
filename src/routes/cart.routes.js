@@ -26,7 +26,7 @@ cartRouter.post('/', async (req, res) => {
     } catch (error) {
         res.status(400).send({ respuesta: 'Error en crear Carrito', mensaje: error })
     }
-})
+});
 
 cartRouter.post('/:cid/products/:pid', async (req, res) => {
     const { cid, pid } = req.params

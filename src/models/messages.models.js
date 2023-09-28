@@ -16,8 +16,6 @@ const messagesSchema = new Schema({
     }
 })
 
-cartSchema.pre('findOne', function () {
-    this.populate('products.id_prod')
-})
+
 
 export const messageModel = model('messages', messagesSchema)

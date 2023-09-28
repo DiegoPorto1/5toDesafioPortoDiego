@@ -15,6 +15,7 @@ import sessionRouter from './routes/session.routes.js'
 import { productModel } from './models/products.models.js'
 import { messageModel } from './models/messages.models.js'
 
+
 const app = express()
 const PORT = 4000
 
@@ -24,9 +25,12 @@ const serverExpress = app.listen(PORT, () => {
 
 
 mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net/?retryWrites=true&w=majority')
-    .then(() => console.log('BDD conectada'))
+    .then(async() => {
+        console.log('BDD conectada')
+       
+       })
     .catch(() => console.log('Error en conexion a BDD'))
-
+  
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
