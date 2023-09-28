@@ -1,12 +1,14 @@
 import  express  from 'express'
-import mongoose from 'mongoose'
+import mongoose, { mongo } from 'mongoose'
 import userRouter from './routes/users.routes.js'
 import productRouter from './routes/products.routes.js'
 import cartRouter from './routes/cart.routes.js'
 import { __dirname } from './path.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
-import path from 'path'
+import path from 'path';
+import 'dotenv/config';
+import MongoStore from 'connect-mongo'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import sessionRouter from './routes/session.routes.js'
@@ -28,6 +30,20 @@ mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net/?retryWrites=true&w=majority',
+        mongoOptions:{
+            useNewUrlParser: true,
+            useUnifiedTopology:true
+        },
+        ttl: 60
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave:true,
+    saveUninitialized:true,
+}))
+
 
 app.engine('handlebars', engine()) //Defino que motor de plantillas voy a utilizar y su config
 app.set('view engine', 'handlebars') //Setting de mi app de hbs
