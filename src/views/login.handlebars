@@ -1,0 +1,39 @@
+<div class="container"><h1 >Inicio de sesión</h1>
+
+  <form  action="/api/sessions/login" method="POST">
+    <div >
+      <label for="email">Email</label>
+      <div>
+        <input
+          type="email"
+          id="email"
+          required
+          class="form-control"
+          name="email"
+        />
+      </div>
+      <label for="password" >Contraseña</label>
+      <div >
+        <input
+          type="password"
+          id="password"
+          required
+          class="form-control"
+          name="password"
+        />
+      </div>
+    </div>
+
+    <button type="submit" >Iniciar sesión</button>
+  </form>
+
+  <div class="container">
+    {{#if req.session.error}}
+      <p>{{req.session.error}}</p>
+    {{/if}}
+  </div>
+  <div class="container"><p>¿Todavía no tienes una cuenta? Unete a nosotros
+      haciendo click
+      <a href="/singup">acá</a></p></div>
+
+</div>

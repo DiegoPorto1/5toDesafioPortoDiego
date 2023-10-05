@@ -1,5 +1,5 @@
 import  express  from 'express'
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 import userRouter from './routes/users.routes.js'
 import productRouter from './routes/products.routes.js'
 import cartRouter from './routes/cart.routes.js'
@@ -47,6 +47,14 @@ app.use(session({
     resave:true,
     saveUninitialized:true,
 }))
+//autenticación de que se ha logueado
+const auth = (req, res, next) => {
+    if (req.session.login === true) {
+      return next();
+    } else {
+      return res.redirect("/api/sessions/login");
+    }
+  };
 
 
 app.engine('handlebars', engine()) //Defino que motor de plantillas voy a utilizar y su config
@@ -55,7 +63,10 @@ app.set('views', path.resolve(__dirname, './views')) //Resolver rutas absolutas 
 app.use('/static', express.static(path.join(__dirname, '/public'))) //Unir rutas en una sola concatenandolas
 app.use('/chat', express.static(path.join(__dirname, '/public')))
 app.use('/realTimeProducts',express.static(path.join(__dirname, '/public')))
-
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.login === true; // Define una variable local en res.locals
+    next();
+  });
 
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
@@ -64,7 +75,7 @@ app.use('/api/sessions', sessionRouter)
 
 
 
-app.get('/realTimeProducts', (req, res) => {
+app.get('/realTimeProducts', auth, (req, res) => {
     res.render('realTimeProducts', {
         css: "style.css",
         title: "products",
@@ -73,6 +84,8 @@ app.get('/realTimeProducts', (req, res) => {
 
     })
 })
+
+
 app.get('/chat', (req, res) => {
     res.render('chat', {
         css: "style.css",
@@ -82,7 +95,8 @@ app.get('/chat', (req, res) => {
 
     })
 })
-app.get('/static', (req, res) => {
+
+app.get('/static',auth, (req, res) => {
     res.render('home', {
         css: "style.css",
         title: "Productos",
@@ -90,7 +104,26 @@ app.get('/static', (req, res) => {
         
 
     })
-})
+});
+
+    sessionRouter.get("/login", (req, res) => {
+        res.render("login", {
+          css: "style.css",
+          title: "Login",
+        });
+      });
+      
+
+
+      app.get("/singup", (req, res) => {
+        res.render("singup", {
+          css: "style.css",
+          title: "Sing Up",
+          
+        });
+      });
+
+
 
 
 
