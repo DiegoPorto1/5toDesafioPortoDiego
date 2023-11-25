@@ -16,6 +16,13 @@ import { productModel } from './models/products.models.js'
 import { messageModel } from './models/messages.models.js'
 
 
+
+app.use('/api/users', isAdmin,userRouter)
+app.use('/api/products',isAdmin, productRouter)
+app.use('/api/carts',isUser, cartRouter)
+app.use('/api/sessions', sessionRouter)
+
+
 const app = express()
 const PORT = 4000
 
@@ -68,10 +75,7 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use('/api/users', userRouter)
-app.use('/api/products', productRouter)
-app.use('/api/carts', cartRouter)
-app.use('/api/sessions', sessionRouter)
+
 
 
 
@@ -164,3 +168,20 @@ io.on('connection', (socket) => {
 
 
 
+const isAdmin = (req, res, next) => {
+    // Verificar si el usuario es un administrador
+    if (req.session && req.session.role === 'admin') {
+      return next();
+    } else {
+      return res.status(403).json({ error: 'Acceso no autorizado' });
+    }
+  };
+  
+  const isUser = (req, res, next) => {
+    // Verificar si el usuario es un usuario normal
+    if (req.session && req.session.role === 'user') {
+      return next();
+    } else {
+      return res.status(403).json({ error: 'Acceso no autorizado' });
+    }
+  };

@@ -17,6 +17,7 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.3",
+    "faker": "^6.6.6",
     "mongoose": "^7.5.0",
     "mongoose-paginate-v2": "^1.7.31",
     "notenv": "^2.0.3",
