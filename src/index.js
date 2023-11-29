@@ -17,9 +17,9 @@ import { messageModel } from './models/messages.models.js'
 
 
 
-app.use('/api/users', isAdmin,userRouter)
-app.use('/api/products',isAdmin, productRouter)
-app.use('/api/carts',isUser, cartRouter)
+app.use('/api/users', userRouter)
+app.use('/api/products', productRouter)
+app.use('/api/carts', cartRouter)
 app.use('/api/sessions', sessionRouter)
 
 

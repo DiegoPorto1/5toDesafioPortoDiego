@@ -3,6 +3,18 @@ import { productModel } from "../models/products.models.js";
 
 const productRouter = Router()
 
+
+const isAdmin = (req, res, next) => {
+    
+    if (req.session && req.session.role === 'admin') {
+        return next();
+    } else {
+        return res.status(403).json({ error: 'Acceso no autorizado' });
+    }
+};
+
+
+
 productRouter.get('/', async (req, res) => {
     const { limit, page, category, sort } = req.query
 
@@ -55,7 +67,7 @@ productRouter.get('/:id', async (req, res) => {
     }
 })
 
-productRouter.post('/', async (req, res) => {
+productRouter.post('/',isAdmin, async (req, res) => {
     const { title, description, stock, code, price, category } = req.body
     try {
         const prod = await productModel.create({ title, description, stock, code, price, category })
@@ -65,7 +77,7 @@ productRouter.post('/', async (req, res) => {
     }
 })
 
-productRouter.put('/:id', async (req, res) => {
+productRouter.put('/:id',isAdmin, async (req, res) => {
     const { id } = req.params
     const { title, description, stock, status, code, price, category } = req.body
 
@@ -80,7 +92,7 @@ productRouter.put('/:id', async (req, res) => {
     }
 })
 
-productRouter.delete('/:id', async (req, res) => {
+productRouter.delete('/:id', isAdmin,async (req, res) => {
     const { id } = req.params
 
     try {

@@ -1,0 +1,44 @@
+1 Campos obligatorios incompletos:
+
+Problema: No se proporciona información esencial para los productos, como el nombre, precio, descripción, etc.
+Solución: Implementa validaciones para asegurarte de que los campos esenciales estén completos antes de agregar un producto.
+
+2 Precios incorrectos:
+
+Problema: Los precios de los productos pueden ser negativos, cero o no tener un formato adecuado.
+Solución: Implementa validaciones para asegurarte de que los precios sean numéricos y positivos.
+
+3 Stock negativo o no suficiente:
+
+Problema: Se permite que el stock sea negativo o insuficiente.
+Solución: Implementa validaciones para asegurarte de que el stock no sea negativo y esté disponible en cantidades suficientes antes de permitir la compra.
+
+4 Duplicación de códigos de producto:
+
+Problema: Dos productos tienen el mismo código único.
+Solución: Asegúrate de que los códigos de producto sean únicos y valida esto al agregar nuevos productos.
+
+5 Imágenes faltantes o incorrectas:
+
+Problema: Algunos productos no tienen imágenes o tienen imágenes incorrectas.
+Solución: Implementa lógica para asegurarte de que cada producto tenga al menos una imagen válida.
+
+6 Errores en la gestión de la disponibilidad:
+
+Problema: Productos descontinuados o fuera de stock no se manejan correctamente.
+Solución: Implementa lógica para gestionar productos descontinuados, fuera de stock o agotados.
+
+7 Problemas de seguridad en la gestión de productos:
+
+Problema: Falta de control de acceso o validaciones de seguridad al agregar o modificar productos.
+Solución: Implementa controles de acceso y valida la entrada del usuario para prevenir posibles ataques.
+
+8 Problemas con la categorización:
+
+Problema: Los productos no están correctamente categorizados o tienen múltiples categorías.
+Solución: Define un sistema de categorización claro y asegúrate de que cada producto tenga una categoría válida.
+
+9 Problemas con las actualizaciones en tiempo real:
+
+Problema: Cambios en los productos no se reflejan inmediatamente en la interfaz de usuario.
+Solución: Implementa un sistema de actualización en tiempo real o utiliza técnicas como cachés para mejorar la velocidad de respuesta.
