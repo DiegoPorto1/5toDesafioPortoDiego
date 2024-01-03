@@ -1,0 +1,51 @@
+2023-12-09T17:01:56.959Z [ERROR]: Este es un mensaje de error desde /loggerTest.
+2023-12-09T17:01:57.019Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:06:27.321Z [ERROR]: Este es un mensaje de error desde /loggerTest.
+2023-12-09T17:06:27.324Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:06:32.755Z [ERROR]: Este es un mensaje de error desde /loggerTest.
+2023-12-09T17:06:32.758Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:06:34.687Z [ERROR]: Este es un mensaje de error desde /loggerTest.
+2023-12-09T17:06:34.690Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:07:03.724Z [ERROR]: Este es un mensaje de error desde /loggerTest.
+2023-12-09T17:07:03.728Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:07:09.307Z [ERROR]: Este es un mensaje de error desde /loggerTest.
+2023-12-09T17:07:09.311Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:08:05.889Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:08:07.107Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2023-12-09T17:23:39.698Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2024-01-01T21:19:18.293Z [ERROR]: uncaughtException: Missing or invalid input: 'options.apis' is required and it should be an array.
+Error: Missing or invalid input: 'options.apis' is required and it should be an array.
+    at module.exports (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\swagger-jsdoc\src\lib.js:27:11)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:52:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-01T21:19:18.301Z [ERROR]: uncaughtException: Missing or invalid input: 'options.apis' is required and it should be an array.
+Error: Missing or invalid input: 'options.apis' is required and it should be an array.
+    at module.exports (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\swagger-jsdoc\src\lib.js:27:11)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:52:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-01T21:22:03.462Z [ERROR]: uncaughtException: Missing or invalid input: 'options.apis' is required and it should be an array.
+Error: Missing or invalid input: 'options.apis' is required and it should be an array.
+    at module.exports (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\swagger-jsdoc\src\lib.js:27:11)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:52:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-01T21:22:03.470Z [ERROR]: uncaughtException: Missing or invalid input: 'options.apis' is required and it should be an array.
+Error: Missing or invalid input: 'options.apis' is required and it should be an array.
+    at module.exports (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\swagger-jsdoc\src\lib.js:27:11)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:52:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-02T23:08:27.601Z [ERROR]: uncaughtException: listen EADDRINUSE: address already in use :::4000
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1740:16)
+    at listenInCluster (node:net:1788:12)
+    at Server.listen (node:net:1876:7)
+    at Function.listen (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\application.js:635:24)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:28:27
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-02T23:08:27.610Z [ERROR]: uncaughtException: listen EADDRINUSE: address already in use :::4000
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1740:16)
+    at listenInCluster (node:net:1788:12)
+    at Server.listen (node:net:1876:7)
+    at Function.listen (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\application.js:635:24)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:28:27
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)

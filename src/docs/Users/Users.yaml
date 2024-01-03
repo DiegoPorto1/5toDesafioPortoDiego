@@ -1,0 +1,134 @@
+paths:
+  /api/users/:
+    get:
+      summary: Obtener a todos los usuarios
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Usuarios obtenidos correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Error interno del servidor        
+
+  /api/users/{id}:
+    get:
+      summary: Obtener un usuario
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $type: string
+          description: ID del usuario autogenerado
+
+      responses:
+        200:
+          description: Usuario obtenido correctamente
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/user"
+        500:
+          description: Error interno del servidor
+
+    put:
+      summary: Actualizar un usuario
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $type: string
+          description: ID del usuario autogenerado
+        - name: body
+          in: body
+          required: true
+          schema:
+            $type: Object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              age:
+                type: number
+              password:
+                type: string
+              role:
+                type: string
+      responses:
+        200:
+          description: Usuario actualizado correctamente
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/user"
+        500:
+          description: Error interno del servidor
+
+    delete:
+      summary: Eliminar un usuario
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $type: string
+          description: eliminación de usuario
+      responses:
+        200:
+          description: Usuario eliminado correctamente
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/user"
+        500:
+          description: Error interno del servidor
+
+
+components:
+  schemas:
+    User: 
+      type: object 
+      properties:
+        _id:
+          type: ObjectId
+          description: ID autogeneraado por MongoDb
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          description: Apellido del usuario
+        email:
+          type: String
+          description: Email del usuario
+        password:
+          type: String
+          description: contraseña del usuario  
+      example:
+        _id: objectId ('23jnsuho1')
+        first_name: Diego
+        last_name: Porto
+        email: Diego@diego.com
+        password: asbhia123 
+   
+  
+   

@@ -2,43 +2,16 @@ import { Router } from "express";
 import { cartModel } from "../models/carts.models.js";
 import { productModel } from "../models/products.models.js";
 import { ticketModel } from "../models/ticket.models.js";
+import { isUser, getCartById, createCart } from "../controllers/cart.controller.js";
 
 const cartRouter = Router()
 
-
-const isUser = (req, res, next) => {
-    // Verificar si el usuario es un usuario normal
-    if (req.session && req.session.role === 'user') {
-      return next();
-    } else {
-      return res.status(403).json({ error: 'Acceso no autorizado' });
-    }
-  };
+cartRouter.get('/:cid', isUser, getCartById);
+cartRouter.post('/', isUser, createCart);
 
 
-cartRouter.get('/:cid', isUser, async (req, res) => {
-    const { cid } = req.params
 
-    try {
-        const cart = await cartModel.findById(cid)
-        if (cart)
-            res.status(200).send({ respuesta: 'OK', mensaje: cart })
-        else
-            res.status(404).send({ respuesta: 'Error en consultar Carrito', mensaje: 'Not Found' })
-    } catch (error) {
-        res.status(400).send({ respuesta: 'Error en consulta carrito', mensaje: error })
-    }
-})
 
-cartRouter.post('/',isUser, async (req, res) => {
-
-    try {
-        const cart = await cartModel.create({})
-        res.status(200).send({ respuesta: 'OK', mensaje: cart })
-    } catch (error) {
-        res.status(400).send({ respuesta: 'Error en crear Carrito', mensaje: error })
-    }
-});
 
 cartRouter.post('/:cid/products/:pid',isUser, async (req, res) => {
     const { cid, pid } = req.params

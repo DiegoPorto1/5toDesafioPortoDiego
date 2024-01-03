@@ -14,30 +14,45 @@ import session from 'express-session'
 import sessionRouter from './routes/session.routes.js'
 import { productModel } from './models/products.models.js'
 import { messageModel } from './models/messages.models.js'
+import logger from './logger.js'
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUiExpress from 'swagger-ui-express'
 
 
 
-app.use('/api/users', userRouter)
-app.use('/api/products', productRouter)
-app.use('/api/carts', cartRouter)
-app.use('/api/sessions', sessionRouter)
 
 
 const app = express()
 const PORT = 4000
 
 const serverExpress = app.listen(PORT, () => {
-    console.log(`Server on port ${PORT}`)
+    logger.info(`Server on port ${PORT}`)
 })
 
 
 mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net/?retryWrites=true&w=majority')
     .then(async() => {
-        console.log('BDD conectada')
+        logger.info('BDD conectada')
        
        })
-    .catch(() => console.log('Error en conexion a BDD'))
+    .catch(() => logger.error('Error en conexion a BDD'))
   
+    const swaggerOptions = {
+      definition:{
+        openapi: '3.1.0',
+        info: {
+          title: "Documentacion del ecommerce",
+          description: "API Coder Backend"
+
+        },
+       
+      },
+      apis:[`${__dirname}/docs/**/*.yaml`]
+    }
+
+    const specs =  swaggerJSDoc (swaggerOptions)
+    
+app.use('/apidocs',swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -54,6 +69,11 @@ app.use(session({
     resave:true,
     saveUninitialized:true,
 }))
+
+app.use('/api/users', userRouter)
+app.use('/api/products', productRouter)
+app.use('/api/carts', cartRouter)
+app.use('/api/sessions', sessionRouter)
 //autenticación de que se ha logueado
 const auth = (req, res, next) => {
     if (req.session.login === true) {
@@ -126,6 +146,13 @@ app.get('/static',auth, (req, res) => {
           
         });
       });
+      app.get('/loggerTest', (req, res) => {
+        logger.debug('Este es un mensaje de debug desde /loggerTest.');
+        logger.info('Este es un mensaje de información desde /loggerTest.');
+        logger.warn('Este es un mensaje de advertencia desde /loggerTest.');
+        logger.error('Este es un mensaje fatal desde /loggerTest.');
+        res.send('Logs generados en /loggerTest.');
+    });
 
 
 
