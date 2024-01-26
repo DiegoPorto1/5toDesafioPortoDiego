@@ -49,3 +49,74 @@ Error: listen EADDRINUSE: address already in use :::4000
     at Function.listen (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\application.js:635:24)
     at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:28:27
     at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-20T19:19:40.760Z [ERROR]: uncaughtException: Cannot access 'isAdmin' before initialization
+ReferenceError: Cannot access 'isAdmin' before initialization
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-20T19:19:40.753Z [ERROR]: uncaughtException: Cannot access 'isAdmin' before initialization
+ReferenceError: Cannot access 'isAdmin' before initialization
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-20T19:20:01.559Z [ERROR]: uncaughtException: Cannot access 'isAdmin' before initialization
+ReferenceError: Cannot access 'isAdmin' before initialization
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-20T19:20:01.566Z [ERROR]: uncaughtException: Cannot access 'isAdmin' before initialization
+ReferenceError: Cannot access 'isAdmin' before initialization
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T16:06:08.506Z [ERROR]: Este es un mensaje fatal desde /loggerTest.
+2024-01-22T20:19:07.675Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:21:37.849Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:21:37.855Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:21:48.072Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:21:48.065Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:26:38.755Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:26:38.762Z [ERROR]: uncaughtException: initializePassport is not defined
+ReferenceError: initializePassport is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:74:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:30:48.737Z [ERROR]: uncaughtException: JwtStrategy requires a secret or key
+TypeError: JwtStrategy requires a secret or key
+    at new JwtStrategy (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\passport-jwt\lib\strategy.js:45:15)
+    at initializePassport (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/config/passport.js:28:25)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:75:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:30:48.747Z [ERROR]: uncaughtException: JwtStrategy requires a secret or key
+TypeError: JwtStrategy requires a secret or key
+    at new JwtStrategy (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\passport-jwt\lib\strategy.js:45:15)
+    at initializePassport (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/config/passport.js:28:25)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:75:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:31:54.959Z [ERROR]: uncaughtException: OAuth2Strategy requires a clientID option
+TypeError: OAuth2Strategy requires a clientID option
+    at Strategy.OAuth2Strategy (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\passport-oauth2\lib\strategy.js:87:34)
+    at new Strategy (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\passport-github2\lib\strategy.js:62:18)
+    at initializePassport (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/config/passport.js:81:28)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:75:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-22T20:31:54.969Z [ERROR]: uncaughtException: OAuth2Strategy requires a clientID option
+TypeError: OAuth2Strategy requires a clientID option
+    at Strategy.OAuth2Strategy (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\passport-oauth2\lib\strategy.js:87:34)
+    at new Strategy (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\passport-github2\lib\strategy.js:62:18)
+    at initializePassport (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/config/passport.js:81:28)
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:75:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)

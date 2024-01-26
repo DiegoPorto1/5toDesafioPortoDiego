@@ -13,10 +13,11 @@ import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import sessionRouter from './routes/session.routes.js'
 import { productModel } from './models/products.models.js'
-import { messageModel } from './models/messages.models.js'
 import logger from './logger.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
+import passport from 'passport'
+import initializePassport from './config/passport.js'
 
 
 
@@ -52,10 +53,11 @@ mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net
 
     const specs =  swaggerJSDoc (swaggerOptions)
     
-app.use('/apidocs',swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser(process.env.SIGNED_COOKIE))
 app.use(session({
     store: MongoStore.create({
         mongoUrl: 'mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net/?retryWrites=true&w=majority',
@@ -69,11 +71,18 @@ app.use(session({
     resave:true,
     saveUninitialized:true,
 }))
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+app.use('/apidocs',swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
+
 
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
-app.use('/api/sessions', sessionRouter)
+app.use('/api/session', sessionRouter)
 //autenticación de que se ha logueado
 const auth = (req, res, next) => {
     if (req.session.login === true) {
@@ -82,6 +91,9 @@ const auth = (req, res, next) => {
       return res.redirect("/api/sessions/login");
     }
   };
+
+
+
 
 
 app.engine('handlebars', engine()) //Defino que motor de plantillas voy a utilizar y su config
@@ -164,16 +176,6 @@ const io = new Server(serverExpress)
 io.on('connection', (socket) => {
     console.log("Servidor Socket.io conectado")
    
-
-
-    socket.on('nuevoMensaje', async ({email, message}) => {
-        console.log(message)
-        await messageModel.create({email:email, message: message})
-        const messages = await messageModel.find()
-        socket.emit('mensajes', messages)
-    })
-
-
     socket.on('nuevoProducto',  async (nuevoProd) => {
         const {title, description, price, stock,category,code, thumbnails}= nuevoProd
         await productModel.create({title,description,price,stock,category,code,thumbnails})
@@ -183,32 +185,9 @@ io.on('connection', (socket) => {
          socket.emit('productos', products);
       });
 
-      socket.on('mostrarChat', async()=>{
-         const messages = await messageModel.find()
-         socket.emit("mostrarMensajes", messages)
-      })
-
-
 })
 
 
 
 
 
-const isAdmin = (req, res, next) => {
-    // Verificar si el usuario es un administrador
-    if (req.session && req.session.role === 'admin') {
-      return next();
-    } else {
-      return res.status(403).json({ error: 'Acceso no autorizado' });
-    }
-  };
-  
-  const isUser = (req, res, next) => {
-    // Verificar si el usuario es un usuario normal
-    if (req.session && req.session.role === 'user') {
-      return next();
-    } else {
-      return res.status(403).json({ error: 'Acceso no autorizado' });
-    }
-  };
