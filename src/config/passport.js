@@ -15,12 +15,22 @@ const ExtractJWT = jwt.ExtractJwt //Extrar de las cookies el token
 const initializePassport = () => {
 
 
-    const cookieExtractor = req => {
+    /*const cookieExtractor = req => {
         
         const token = req.headers.authorization ? req.headers.authorization : {};
 
         console.log("cookieExtractor", token)
         return token
+    }*/
+
+    const cookieExtractor = req => {
+        // console.log("cookie: ", req.cookies)
+        if (req.cookies.jwtCookie) {
+            const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {};
+            return token;
+        }
+        const token = req.headers.authorization ? req.headers.authorization : {};
+        return token;
     }
 
     passport.use('jwt', new JWTStrategy({

@@ -1,11 +1,11 @@
 import {Schema, model} from "mongoose";
+import { v4  as uuidev4} from "uuid";
 
 
 const ticketSchema = new Schema({
     code: {
       type: String,
-      required: true,
-      unique: true
+      default: uuidev4()
     },
     purchase_datetime: {
       type: Date,
@@ -19,7 +19,10 @@ const ticketSchema = new Schema({
       type: String,
       required: true
     }
-  });
+  },
+  { versionKey: false }
+  
+  );
   
  
 export const ticketModel = model('ticket' , ticketSchema)

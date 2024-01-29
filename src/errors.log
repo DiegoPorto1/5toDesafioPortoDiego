@@ -120,3 +120,43 @@ TypeError: OAuth2Strategy requires a clientID option
     at initializePassport (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/config/passport.js:81:28)
     at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:75:1
     at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-28T18:31:55.964Z [ERROR]: uncaughtException: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:174:12)
+    at ServerResponse.json (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:278:15)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:162:21)
+    at addOrUpdateProductInCart (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/controllers/cart.controller.js:147:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-01-28T18:31:56.025Z [ERROR]: uncaughtException: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:174:12)
+    at ServerResponse.json (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:278:15)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:162:21)
+    at addOrUpdateProductInCart (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/controllers/cart.controller.js:147:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-01-29T14:32:36.729Z [ERROR]: uncaughtException: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:174:12)
+    at ServerResponse.json (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:278:15)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:162:21)
+    at addOrUpdateProductInCart (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/controllers/cart.controller.js:153:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-01-29T14:32:36.774Z [ERROR]: uncaughtException: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:174:12)
+    at ServerResponse.json (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:278:15)
+    at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:162:21)
+    at addOrUpdateProductInCart (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/controllers/cart.controller.js:153:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
