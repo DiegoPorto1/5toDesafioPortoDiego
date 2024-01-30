@@ -18,6 +18,7 @@ import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
 import passport from 'passport'
 import initializePassport from './config/passport.js'
+import checkoutRouter from './routes/checkout.routes.js'
 
 
 
@@ -83,6 +84,7 @@ app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
 app.use('/api/session', sessionRouter)
+app.use('/api/carts/checkout', checkoutRouter);
 //autenticación de que se ha logueado
 const auth = (req, res, next) => {
     if (req.session.login === true) {

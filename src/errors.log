@@ -160,3 +160,15 @@ Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the cli
     at ServerResponse.send (C:\Users\diego\Desktop\Back\5toDesafioDiegoPorto\node_modules\express\lib\response.js:162:21)
     at addOrUpdateProductInCart (file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/controllers/cart.controller.js:153:25)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-01-30T12:03:40.267Z [ERROR]: uncaughtException: router is not defined
+ReferenceError: router is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:87:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-30T12:05:04.036Z [ERROR]: uncaughtException: router is not defined
+ReferenceError: router is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:87:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-30T12:05:04.041Z [ERROR]: uncaughtException: router is not defined
+ReferenceError: router is not defined
+    at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:87:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
