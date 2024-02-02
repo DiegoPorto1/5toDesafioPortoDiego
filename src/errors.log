@@ -172,3 +172,13 @@ ReferenceError: router is not defined
 ReferenceError: router is not defined
     at file:///C:/Users/diego/Desktop/Back/5toDesafioDiegoPorto/src/index.js:87:1
     at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-31T22:00:41.029Z [ERROR]: uncaughtException: user is not defined
+ReferenceError: user is not defined
+    at initializePassport (file:///C:/Users/diego/Desktop/Back/entrega%20final/Back/src/config/passport.js:16:38)
+    at file:///C:/Users/diego/Desktop/Back/entrega%20final/Back/src/index.js:80:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)
+2024-01-31T22:00:41.036Z [ERROR]: uncaughtException: user is not defined
+ReferenceError: user is not defined
+    at initializePassport (file:///C:/Users/diego/Desktop/Back/entrega%20final/Back/src/config/passport.js:16:38)
+    at file:///C:/Users/diego/Desktop/Back/entrega%20final/Back/src/index.js:80:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:194:25)

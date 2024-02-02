@@ -17,8 +17,12 @@ const getAllProducts = async (req, res) => {
     const ord = sort == 'asc' ? 1 : -1
 
     try {
-        const prods = await productModel.paginate({ filter: filter }, { limit: lim, page: pag, sort: { price: ord } })
-        if (prods) {
+        const paginatedProducts = await productModel.paginate({ filter: filter }, { limit: lim, page: pag, sort: { price: ord } });
+
+        // Extraer la lista de productos del objeto paginado
+        const prods = paginatedProducts.docs;
+
+        if (prods && prods.length > 0) {
             return res.status(200).send(prods)
         }
         res.status(404).send({ error: "Productos no encontrados" })
@@ -41,14 +45,32 @@ const getProductById = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-    const { title, description, stock, code, price, category } = req.body;
     try {
-        const prod = await productModel.create({ title, description, stock, code, price, category });
-        res.status(200).send({ respuesta: 'OK', mensaje: prod });
+      const { title, description, price, stock, category, code } = req.body;
+      const thumbnails = Array.isArray(req.files) ? req.files.map(file => file.path) : [];
+  
+      const nuevoProducto = new productModel({
+        title,
+        description,
+        price,
+        stock,
+        category,
+        code,
+        thumbnails,
+        status: true,
+      });
+  
+      console.log('Rutas de las imágenes:', thumbnails);
+  
+      const productoGuardado = await nuevoProducto.save();
+  
+      res.json({ mensaje: 'Producto agregado', producto: productoGuardado });
     } catch (error) {
-        res.status(400).send({ respuesta: 'Error en crear productos', mensaje: error });
+      console.error(error);
+      res.status(500).json({ mensaje: 'Hubo un error al agregar el producto' });
     }
-};
+  };
+  
 
 const updateProduct = async (req, res) => {
     const { id } = req.params;

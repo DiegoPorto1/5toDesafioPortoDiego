@@ -12,6 +12,7 @@ export const createTicket = async (req, res) => {
         let amount = 0;
         let invalidProducts = [];
         let discountPremiumUsers = 0.1;
+        console.log (purchaser)
         if (cart) {
             //FILTRAR PRODUCTOS QUE SUPEREN EL STOCK PARA AGREGARLOS A LA ORDEN DEL CHECKOUT
             const filteredProducts = await Promise.all(cart.products.map(async (prod) => {
@@ -22,12 +23,17 @@ export const createTicket = async (req, res) => {
                 console.log("prod checkout controller", prod.id_prod._id);
                 let product = await productModel.findById(prod.id_prod._id);
                 console.log("stock checkout", product.stock)
+                console.log("prod", prod)
                 if (prod.quantity > product.stock) {
+                    console.log("prod", prod)
+		            console.log("product", product)
                     console.log("productos no suficientes")
                     //array para actualizar carrito
                     invalidProducts.push(prod);
                     return null
                 } else {
+                    console.log("prod", prod)
+		            console.log("product", product)
                     const updatedStock = product.stock - prod.quantity;
                     await productModel.findByIdAndUpdate(product._id, { stock: updatedStock });
                     console.log("producto que va para orden", prod)

@@ -19,6 +19,7 @@ import swaggerUiExpress from 'swagger-ui-express'
 import passport from 'passport'
 import initializePassport from './config/passport.js'
 import checkoutRouter from './routes/checkout.routes.js'
+import cors from 'cors'
 
 
 
@@ -54,8 +55,12 @@ mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net
 
     const specs =  swaggerJSDoc (swaggerOptions)
     
+    const corsOptions = {
+      origin: 'http://localhost:3000',  // Reemplaza con la URL de tu aplicación frontend
+      credentials: true,  // Habilita el intercambio de cookies y encabezados de autorización
+    };
 
-
+app.use(cors(corsOptions));    
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser(process.env.SIGNED_COOKIE))
@@ -79,7 +84,7 @@ app.use(passport.session())
 
 app.use('/apidocs',swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
-
+app.use('/src/images', express.static('src/images'));
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
