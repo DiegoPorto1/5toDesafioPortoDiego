@@ -28,6 +28,7 @@ import cors from 'cors'
 const app = express()
 const PORT = 4000
 
+
 const serverExpress = app.listen(PORT, () => {
     logger.info(`Server on port ${PORT}`)
 })
@@ -56,7 +57,7 @@ mongoose.connect('mongodb+srv://DiegoPorto:yodiejo1@cluster0.5mqf58r.mongodb.net
     const specs =  swaggerJSDoc (swaggerOptions)
     
     const corsOptions = {
-      origin: 'http://localhost:3000',  // Reemplaza con la URL de tu aplicación frontend
+      origin: 'https://donulay.onrender.com',  // Reemplaza con la URL de tu aplicación frontend
       credentials: true,  // Habilita el intercambio de cookies y encabezados de autorización
     };
 
@@ -99,72 +100,11 @@ const auth = (req, res, next) => {
     }
   };
 
-
-
-
-
-app.engine('handlebars', engine()) //Defino que motor de plantillas voy a utilizar y su config
-app.set('view engine', 'handlebars') //Setting de mi app de hbs
-app.set('views', path.resolve(__dirname, './views')) //Resolver rutas absolutas a traves de rutas relativas
-app.use('/static', express.static(path.join(__dirname, '/public'))) //Unir rutas en una sola concatenandolas
-app.use('/chat', express.static(path.join(__dirname, '/public')))
-app.use('/realTimeProducts',express.static(path.join(__dirname, '/public')))
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.login === true; // Define una variable local en res.locals
     next();
   });
 
-
-
-
-
-app.get('/realTimeProducts', auth, (req, res) => {
-    res.render('realTimeProducts', {
-        css: "style.css",
-        title: "products",
-        js: "realTimeProducts.js",
-        js2: "script.js"
-
-    })
-})
-
-
-app.get('/chat', (req, res) => {
-    res.render('chat', {
-        css: "style.css",
-        title: "Chat",
-        js: "script.js",
-        
-
-    })
-})
-
-app.get('/static',auth, (req, res) => {
-    res.render('home', {
-        css: "style.css",
-        title: "Productos",
-        js2: "home.js",
-        
-
-    })
-});
-
-    sessionRouter.get("/login", (req, res) => {
-        res.render("login", {
-          css: "style.css",
-          title: "Login",
-        });
-      });
-      
-
-
-      app.get("/singup", (req, res) => {
-        res.render("singup", {
-          css: "style.css",
-          title: "Sing Up",
-          
-        });
-      });
       app.get('/loggerTest', (req, res) => {
         logger.debug('Este es un mensaje de debug desde /loggerTest.');
         logger.info('Este es un mensaje de información desde /loggerTest.');
@@ -177,22 +117,6 @@ app.get('/static',auth, (req, res) => {
 
 
 
-const io = new Server(serverExpress)
-
-
-io.on('connection', (socket) => {
-    console.log("Servidor Socket.io conectado")
-   
-    socket.on('nuevoProducto',  async (nuevoProd) => {
-        const {title, description, price, stock,category,code, thumbnails}= nuevoProd
-        await productModel.create({title,description,price,stock,category,code,thumbnails})
-    })
-    socket.on('mostrarProductos', async () => {
-        const products = await  productModel.find()
-         socket.emit('productos', products);
-      });
-
-})
 
 
 

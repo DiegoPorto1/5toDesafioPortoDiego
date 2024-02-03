@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 productRouter.get('/', getAllProducts);
 productRouter.get('/:id', getProductById);
-productRouter.post('/upload', passportError('jwt'),upload.array('thumbnails'), createProduct);
+productRouter.post('/upload', passportError('jwt'),authorization('admin'),upload.array('thumbnails'), createProduct);
 productRouter.put('/:id', passportError('jwt'), authorization('admin'), updateProduct);
 productRouter.delete('/:id', passportError('jwt'), authorization('admin'), deleteProduct);
 
